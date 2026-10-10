@@ -40,6 +40,26 @@ Dataset link: [Diabetes Prediction Dataset](https://www.kaggle.com/datasets/iamm
    - Evaluate the model on test data.
    - Generate a classification report and confusion matrix.
 
+## Results
+
+The dataset has about 100,000 rows. After removing 3,854 duplicates, 96,146 rows were left and split 60% train, 20% validation, 20% test (19,230 test rows).
+
+| Metric (test set) | Value |
+|:--|:--|
+| Accuracy | 92.98% |
+| Diabetes class precision | 1.00 |
+| Diabetes class recall | 0.19 |
+| Diabetes class F1 | 0.33 |
+
+The accuracy looks good, but it is misleading. Only about 8.7% of the test rows (1,677 of 19,230) are diabetic, so a model that always predicts "no diabetes" would score about 91.3%. This model catches only 19% of the diabetic cases, so it is not useful for screening yet.
+
+## Limitations and Next Steps
+
+- Handle the class imbalance (class weights or resampling) and tune the decision threshold to raise recall.
+- Report recall, AUROC and PR-AUC, not just accuracy.
+- Scale the numeric features and one-hot encode `smoking_history` (it is currently label encoded, which implies an order that does not exist).
+- This is a practice project on a public Kaggle dataset, not a medical tool.
+
 ## Dependencies
 - pandas
 - numpy
